@@ -8,7 +8,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1"> 
-    <title>HELPDESK</title>
+    <title>Help Desk</title>
     <link rel="shortcut icon" href="images/icon.png">
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <script src="js/jquery-1.12.4.min.js"></script>
@@ -73,7 +73,7 @@
                         </li>
                         <li><a href="<?=site_url();?>/ticket-list.php">List Ticket</a></li>
                         <li><a href="<?=site_url();?>/open-ticket.php">Open Ticket</a></li>
-                        <li><a href="<?=site_url();?>/laporan.php">Laporan</a></li>
+                        <li><a href="<?=site_url();?>/laporan.php">Report</a></li>
                     <?php } ?>
                 </ul>
                 

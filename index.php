@@ -6,7 +6,7 @@
         
         <?php if(session_me()){ ?>
             <h2>Hello <?=ucfirst(strtolower($_SESSION['datauser']['tu_full_name']));?></h2>
-            <p>Dibawah ini merupakan rangkuman total data yang terdapat pada aplikasi ini.</p>
+            <p>Below is a summary of the total data contained in this application.</p>
 
             <br>
             <div class="row">
@@ -33,7 +33,7 @@
             </div>
         <?php } else { ?>
             <h2>Hello world!</h2>
-            <p>Selamat datang di aplikasi ku, ada banyak fitur yang sudah di sediakan yang dapat kamu pakai untuk membantu kebutuhan mu saat ini. Selamat mencoba, Terima kasih.</p>
+            <p>Welcome to my application, there are many features that have been provided that you can use to help your current needs. Good luck, thank you.</p>
         <?php } ?>
     </div>
 </div>
