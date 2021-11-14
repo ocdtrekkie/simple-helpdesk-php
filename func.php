@@ -116,9 +116,9 @@
         $https_check = (!empty($_SERVER['HTTPS']) ? 'https' : 'http');
 
         if($slash){
-            $siteurl =  $https_check . '://' . $http_host . '/' .$dir_project.'/';
+            $siteurl =  $https_check . '://' . $http_host . '/';
         } else {
-            $siteurl =  $https_check . '://' . $http_host . '/' .$dir_project;
+            $siteurl =  $https_check . '://' . $http_host;
         }
 
         return $siteurl;

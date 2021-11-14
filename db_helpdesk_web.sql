@@ -39,7 +39,7 @@ CREATE TABLE `tbl_department` (
 --
 
 INSERT INTO `tbl_department` (`td_id`, `td_name`, `td_description`) VALUES
-(1, 'General', 'Not associated with a given department'),
+(1, 'General', 'Not associated with a given department');
 
 -- --------------------------------------------------------
 
@@ -79,7 +79,7 @@ CREATE TABLE `tbl_service` (
 --
 
 INSERT INTO `tbl_service` (`ts_id`, `ts_name`, `ts_description`) VALUES
-(1, 'General', 'Not associated with a given service'),
+(1, 'General', 'Not associated with a given service');
 
 -- --------------------------------------------------------
 
@@ -98,13 +98,6 @@ CREATE TABLE `tbl_ticket` (
   `tt_status` enum('NEW','PROCCESS','PENDDING','CANCEL','DONE','DELETE') NOT NULL DEFAULT 'NEW',
   `tt_created` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `tbl_ticket`
---
-
---INSERT INTO `tbl_ticket` (`tt_id`, `tt_user`, `tt_subject`, `tt_department`, `tt_service`, `tt_priority`, `tt_message`, `tt_status`, `tt_created`) VALUES
---(1, 2, 'Pengalihan akun', 3, 2, 2, 'assdasd', 'NEW', '2019-06-18 19:19:29'),
 
 
 -- --------------------------------------------------------
@@ -127,8 +120,8 @@ CREATE TABLE `tbl_user` (
 --
 
 INSERT INTO `tbl_user` (`tu_id`, `tu_role`, `tu_user`, `tu_pass`, `tu_full_name`, `tu_email`) VALUES
-(1, 'admin', 'admin', '123', 'Kang cahya', 'cahya@yahoo.com'),
---(2, 'customer', 'customer', '123', 'Customer', 'customer@gmail.com');
+(1, 'admin', 'admin', '123', 'Kang cahya', 'cahya@yahoo.com');
+-- (2, 'customer', 'customer', '123', 'Customer', 'customer@gmail.com');
 
 --
 -- Indexes for dumped tables
@@ -176,31 +169,31 @@ ALTER TABLE `tbl_user`
 -- AUTO_INCREMENT for table `tbl_department`
 --
 ALTER TABLE `tbl_department`
-  MODIFY `td_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `td_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `tbl_priority`
 --
 ALTER TABLE `tbl_priority`
-  MODIFY `tp_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `tp_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `tbl_service`
 --
 ALTER TABLE `tbl_service`
-  MODIFY `ts_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `ts_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `tbl_ticket`
 --
 ALTER TABLE `tbl_ticket`
-  MODIFY `tt_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `tt_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1;
 
 --
 -- AUTO_INCREMENT for table `tbl_user`
 --
 ALTER TABLE `tbl_user`
-  MODIFY `tu_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `tu_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- Constraints for dumped tables
