@@ -39,10 +39,7 @@ CREATE TABLE `tbl_department` (
 --
 
 INSERT INTO `tbl_department` (`td_id`, `td_name`, `td_description`) VALUES
-(1, 'Dev Ops', 'aaa'),
-(2, 'Sales', 'adsadas'),
-(3, 'Billing', 'sdasdasd'),
-(4, 'edwede', '');
+(1, 'General', 'Not associated with a given department'),
 
 -- --------------------------------------------------------
 
@@ -60,9 +57,10 @@ CREATE TABLE `tbl_priority` (
 --
 
 INSERT INTO `tbl_priority` (`tp_id`, `tp_name`) VALUES
-(1, 'Hight'),
-(2, 'Medium'),
-(3, 'Low');
+(1, 'Critical'),
+(2, 'High'),
+(3, 'Medium'),
+(4, 'Low');
 
 -- --------------------------------------------------------
 
@@ -81,8 +79,7 @@ CREATE TABLE `tbl_service` (
 --
 
 INSERT INTO `tbl_service` (`ts_id`, `ts_name`, `ts_description`) VALUES
-(1, 'HOSTING 1GB', 'layana hosting 1GB IDN'),
-(2, 'DOMAIN .COM Murah 1Tahun', '1 tahun domain testing\r\n');
+(1, 'General', 'Not associated with a given service'),
 
 -- --------------------------------------------------------
 
@@ -106,9 +103,9 @@ CREATE TABLE `tbl_ticket` (
 -- Dumping data for table `tbl_ticket`
 --
 
-INSERT INTO `tbl_ticket` (`tt_id`, `tt_user`, `tt_subject`, `tt_department`, `tt_service`, `tt_priority`, `tt_message`, `tt_status`, `tt_created`) VALUES
-(1, 2, 'Pengalihan akun', 3, 2, 2, 'assdasd', 'NEW', '2019-06-18 19:19:29'),
-(2, 2, 'Pengalihan akun', 1, 1, 3, 'hhjg', 'DELETE', '2019-06-18 20:11:11');
+--INSERT INTO `tbl_ticket` (`tt_id`, `tt_user`, `tt_subject`, `tt_department`, `tt_service`, `tt_priority`, `tt_message`, `tt_status`, `tt_created`) VALUES
+--(1, 2, 'Pengalihan akun', 3, 2, 2, 'assdasd', 'NEW', '2019-06-18 19:19:29'),
+
 
 -- --------------------------------------------------------
 
@@ -131,7 +128,7 @@ CREATE TABLE `tbl_user` (
 
 INSERT INTO `tbl_user` (`tu_id`, `tu_role`, `tu_user`, `tu_pass`, `tu_full_name`, `tu_email`) VALUES
 (1, 'admin', 'admin', '123', 'Kang cahya', 'cahya@yahoo.com'),
-(2, 'customer', 'customer', '123', 'Customer', 'customer@gmail.com');
+--(2, 'customer', 'customer', '123', 'Customer', 'customer@gmail.com');
 
 --
 -- Indexes for dumped tables
