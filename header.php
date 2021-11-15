@@ -27,18 +27,30 @@
 </head>
 
 <?php 
+	$ssusername = Q_mres($_SERVER['HTTP_X_SANDSTORM_USERNAME']);
+	$ssuserid = Q_mres($_SERVER['HTTP_X_SANDSTORM_USER_ID']);
+	$ssuserhandle = Q_mres($_SERVER['HTTP_X_SANDSTORM_PREFERRED_HANDLE']);
+
     // if (session_status() !== PHP_SESSION_ACTIVE) {
     if(!session_me()){
         if(your_position() !== site_url(true)){
             redirect_to(site_url(true));
         }
-        echo "
-            <script>
-                $(window).load(function(){        
-                    $('#myModal').modal('show');
-                }); 
-            </script>
-        ";
+		
+		$result = Q_array("SELECT * FROM tbl_user WHERE tu_user='$ssuserhandle'");
+        if(count($result) > 0){
+            $_SESSION['login'] = true;
+            $_SESSION['datauser'] = $result[0];
+        }
+		else {
+			$crresult = Q_execute("INSERT INTO `tbl_user` (`tu_role`, `tu_user`, `tu_full_name`, `tu_email`) VALUES ('customer', '$ssuserhandle', '$ssusername', '$ssuserid')");
+			$result = Q_array("SELECT * FROM tbl_user WHERE tu_user='$ssuserhandle'");
+			if(count($result) > 0){
+				$_SESSION['login'] = true;
+				$_SESSION['datauser'] = $result[0];
+				redirect_to(site_url(true));
+			}
+		}
     }
 ?>
 
@@ -53,7 +65,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="<?=site_url();?>">HELPDESK</a>
+                <a class="navbar-brand" href="<?=site_url();?>">Help Desk</a>
             </div>
 
             <!-- Collect the nav links, forms, and other content for toggling -->

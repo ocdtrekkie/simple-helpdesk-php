@@ -88,6 +88,7 @@ opt/app/.sandstorm/service-config/mime.types
 opt/app/.sandstorm/service-config/nginx.conf
 opt/app/config.php
 opt/app/css/bootstrap.min.css
+opt/app/css/bootstrap.min.css.map
 opt/app/db_helpdesk_web.sql
 opt/app/department.php
 opt/app/footer.php
@@ -100,6 +101,7 @@ opt/app/js/jquery-1.12.4.min.js
 opt/app/laporan.php
 opt/app/logout.php
 opt/app/open-ticket.php
+opt/app/priority.php
 opt/app/service.php
 opt/app/ticket-list.php
 opt/app/users.php
