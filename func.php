@@ -2,35 +2,15 @@
     
     function db($params = array())
     {
-        if (isset($params['hostname'])) {
-            $hostname = $params['hostname'];
-        } else {
-            $hostname = CONF_HOSTNAME;
-        }
-
-        if (isset($params['username'])) {
-            $username = $params['username'];
-        } else {
-            $username = CONF_USERNAME;
-        }
-
-        if (isset($params['password'])) {
-            $password = $params['password'];
-        } else {
-            $password = CONF_PASSWORD;
-        }
-
-        if (isset($params['database'])) {
-            $database = $params['database'];
-        } else {
-            $database = CONF_DATABASE;
-        }
-
-        $conn = new mysqli($hostname, $username, $password, $database);
-
-        if ($conn->connect_error) {
-            die("Connection failed: " . $conn->connect_error);
-        }
+        $conn = new SQLite3('/var/simplehelpdesk.sqlite');
+		
+		$conn->exec("CREATE TABLE IF NOT EXISTS tbl_department (td_id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, td_name TEXT NOT NULL, td_description TEXT)");
+		$conn->exec("CREATE TABLE IF NOT EXISTS tbl_priority (tp_id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, tp_name TEXT NOT NULL)");
+		$conn->exec("CREATE TABLE IF NOT EXISTS tbl_service (ts_id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, ts_name TEXT NOT NULL, ts_description TEXT)");
+		$conn->exec("CREATE TABLE IF NOT EXISTS tbl_ticket (tt_id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, tt_user INTEGER NOT NULL, tt_subject TEXT NOT NULL, tt_department INTEGER NOT NULL, tt_service INTEGER NOT NULL, tt_priority INTEGER NOT NULL, tt_message TEXT NOT NULL, tt_status INTEGER NOT NULL, tt_created TEXT NOT NULL)");
+		$conn->exec("CREATE TABLE IF NOT EXISTS tbl_user (tu_id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, tu_role INTEGER NOT NULL, tu_user TEXT NOT NULL, tu_pass TEXT NOT NULL, tu_full_name TEXT NOT NULL, tu_email TEXT NOT NULL)");
+		# status: 0 NEW, 1 PROCESSING, 2 PENDING, 3 CANCELLED, 4 RESOLVED, 5 CLOSED
+		# role: 0 CUSTOMER, 1 TECHNICIAN, 2 ADMIN
 
         return $conn;
     }
@@ -98,7 +78,7 @@
         if ($param === null) {
             return null;
         } else {
-            return mysqli_real_escape_string($db, $param); 
+            return $db->escapeString($param); 
         }
     }
 
