@@ -24,9 +24,18 @@
         } else {
             if ($result = $db->query($sql)) 
             {
-                return $result->fetch_all(MYSQLI_ASSOC);
+				$data= array();
+				
+				while ($res= $result->fetchArray(SQLITE3_ASSOC))
+				{
+					//insert row into array
+					array_push($data, $res);
 
-                $result->free();
+				}
+				
+                return $data;
+
+                $result->finalize();
             }
 
             /* close connection */
