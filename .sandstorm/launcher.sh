@@ -15,7 +15,6 @@ wait_for() {
 mkdir -p /var/lib/mysql
 mkdir -p /var/lib/mysql-files
 mkdir -p /var/lib/nginx
-mkdir -p /var/lib/php/sessions
 mkdir -p /var/log
 mkdir -p /var/log/mysql
 mkdir -p /var/log/nginx
@@ -26,14 +25,25 @@ mkdir -p /var/run/php
 rm -rf /var/tmp
 mkdir -p /var/tmp
 mkdir -p /var/run/mysqld
+rm -rf /var/lib/php/sessions
+mkdir -p /var/lib/php/sessions
 
-# Ensure mysql tables created
-# HOME=/etc/mysql /usr/bin/mysql_install_db
-HOME=/etc/mysql /usr/sbin/mysqld --initialize
+# Rotate log files larger than 512K
+log_files="$(find /var/log -type f -name '*.log')"
+for f in $log_files; do
+    if [ $(du -b "$f" | awk '{print $1}') -ge $((512 * 1024)) ] ; then
+        mv $f $f.1
+    fi
+done
+
+if [ ! -d /var/lib/mysql/mysql ]; then
+    # Ensure mysql tables created
+    HOME=/etc/mysql /usr/sbin/mysqld --initialize
+fi
 
 # Spawn mysqld, php
 HOME=/etc/mysql /usr/sbin/mysqld --skip-grant-tables &
-/usr/sbin/php-fpm7.3 --nodaemonize --fpm-config /etc/php/7.3/fpm/php-fpm.conf &
+/usr/sbin/php-fpm8.2 --nodaemonize --fpm-config /etc/php/8.2/fpm/php-fpm.conf &
 # Wait until mysql and php have bound their sockets, indicating readiness
 wait_for mysql /var/run/mysqld/mysqld.sock
 
@@ -43,7 +53,7 @@ if [ ! -e /var/.db-created ]; then
     touch /var/.db-created
 fi
 
-wait_for php-fpm7.3 /var/run/php/php7.3-fpm.sock
+wait_for php-fpm8.2 /var/run/php/php8.2-fpm.sock
 
 # Start nginx.
 /usr/sbin/nginx -c /opt/app/.sandstorm/service-config/nginx.conf -g "daemon off;"
