@@ -110,7 +110,7 @@ CREATE TABLE `tbl_user` (
   `tu_id` int(11) NOT NULL,
   `tu_role` enum('admin','customer') NOT NULL,
   `tu_user` varchar(100) NOT NULL,
-  `tu_pass` varchar(100) NOT NULL,
+  `tu_pass` varchar(100) NOT NULL DEFAULT '123',
   `tu_full_name` varchar(200) NOT NULL,
   `tu_email` varchar(150) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;

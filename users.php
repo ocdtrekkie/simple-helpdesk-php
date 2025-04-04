@@ -14,6 +14,10 @@
                 <div class="modal-body">                    
                     <div class="row">
                         <div class="col-md-12 form-group">
+                            <label for="">Username:</label>
+                            <input type="text" name="username" class="form-control" required="true">
+                        </div>
+                        <div class="col-md-12 form-group">
                             <label for="">Full Name:</label>
                             <input type="text" name="fullname" class="form-control" required="true">
                         </div>
@@ -91,10 +95,11 @@
     if(isset($_POST['save']))
     {
         $a = Q_mres('customer');
+        $b = Q_mres($_POST['username']);
         $d = Q_mres($_POST['fullname']);
         $e = Q_mres($_POST['email']);
 
-        $sql = "INSERT INTO tbl_user (tu_role, tu_full_name, tu_email) VALUES ('$a', '$d', '$e')";
+        $sql = "INSERT INTO tbl_user (tu_role, tu_user, tu_full_name, tu_email) VALUES ('$a', '$b', '$d', '$e')";
         if(Q_execute($sql)){
             redirect_to("users.php");
         }

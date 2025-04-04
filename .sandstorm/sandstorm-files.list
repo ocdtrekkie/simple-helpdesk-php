@@ -96,10 +96,10 @@ opt/app/images/logo.png
 opt/app/index.php
 opt/app/js/bootstrap.min.js
 opt/app/js/jquery-1.12.4.min.js
-opt/app/laporan.php
 opt/app/logout.php
 opt/app/open-ticket.php
 opt/app/priority.php
+opt/app/reports.php
 opt/app/service.php
 opt/app/ticket-list.php
 opt/app/users.php

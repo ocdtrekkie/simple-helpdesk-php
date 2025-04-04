@@ -59,8 +59,8 @@
                                             <select name="status" class="form-control" required="true">
                                                 <option value="<?=$val['tt_status'];?>">SELECTED : <?=$val['tt_status'];?></option>
                                                 <option value="NEW">NEW</option>
-                                                <option value="PROCCESS">PROCCESS</option>
-                                                <option value="PENDDING">PENDDING</option>
+                                                <option value="PROCESS">PROCESS</option>
+                                                <option value="PENDING">PENDING</option>
                                                 <option value="CANCEL">CANCEL</option>
                                                 <option value="DONE">DONE</option>
                                                 <option value="DELETE">DELETE</option>

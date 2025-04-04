@@ -12,17 +12,17 @@
 ?>
 
 <div class="container">
-    <div class="page-header print-header"><h1>Laporan</h1></div>
+    <div class="page-header print-header"><h1>Reports</h1></div>
     
     <?php if(!isset($_GET['hideformfilter'])) { ?>
         <h3>Quick Filter</h3>
-        <a href="<?=site_url();?>/laporan.php?start=<?=$today;?>&end=<?=$today;?>&status=ALL&hideformfilter=true&filter=Submit" class="btn btn-default">Today</a>
-        <a href="<?=site_url();?>/laporan.php?start=<?=$yesterday;?>&end=<?=$today;?>&status=ALL&hideformfilter=true&filter=Submit" class="btn btn-default">Yesterday</a>
-        <a href="<?=site_url();?>/laporan.php?start=<?=$last_week;?>&end=<?=$today;?>&status=ALL&hideformfilter=true&filter=Submit" class="btn btn-default">Last Week</a>
-        <a href="<?=site_url();?>/laporan.php?start=<?=$last_month;?>&end=<?=$today;?>&status=ALL&hideformfilter=true&filter=Submit" class="btn btn-default">Last Month</a>
-        <a href="<?=site_url();?>/laporan.php?start=<?=$last_6month;?>&end=<?=$today;?>&status=ALL&hideformfilter=true&filter=Submit" class="btn btn-default">Last 6 Month</a>
-        <a href="<?=site_url();?>/laporan.php?start=<?=$last_year;?>&end=<?=$today;?>&status=ALL&hideformfilter=true&filter=Submit" class="btn btn-default">Last Year</a>
-        <a href="<?=site_url();?>/laporan.php?start=<?=$last_1century;?>&end=<?=$today;?>&status=ALL&hideformfilter=true&filter=Submit" class="btn btn-danger">Show All Without Filter</a>
+        <a href="<?=site_url();?>/reports.php?start=<?=$today;?>&end=<?=$today;?>&status=ALL&hideformfilter=true&filter=Submit" class="btn btn-default">Today</a>
+        <a href="<?=site_url();?>/reports.php?start=<?=$yesterday;?>&end=<?=$today;?>&status=ALL&hideformfilter=true&filter=Submit" class="btn btn-default">Yesterday</a>
+        <a href="<?=site_url();?>/reports.php?start=<?=$last_week;?>&end=<?=$today;?>&status=ALL&hideformfilter=true&filter=Submit" class="btn btn-default">Last Week</a>
+        <a href="<?=site_url();?>/reports.php?start=<?=$last_month;?>&end=<?=$today;?>&status=ALL&hideformfilter=true&filter=Submit" class="btn btn-default">Last Month</a>
+        <a href="<?=site_url();?>/reports.php?start=<?=$last_6month;?>&end=<?=$today;?>&status=ALL&hideformfilter=true&filter=Submit" class="btn btn-default">Last 6 Month</a>
+        <a href="<?=site_url();?>/reports.php?start=<?=$last_year;?>&end=<?=$today;?>&status=ALL&hideformfilter=true&filter=Submit" class="btn btn-default">Last Year</a>
+        <a href="<?=site_url();?>/reports.php?start=<?=$last_1century;?>&end=<?=$today;?>&status=ALL&hideformfilter=true&filter=Submit" class="btn btn-danger">Show All Without Filter</a>
         
         <br><br>
         <h3>Advance Filter</h3>
@@ -41,8 +41,8 @@
                     <select name="status" class="form-control">
                         <option value="ALL">- select status -</option>
                         <option value="NEW">NEW</option>
-                        <option value="PROCCESS">PROCCESS</option>
-                        <option value="PENDDING">PENDDING</option>
+                        <option value="PROCESS">PROCESS</option>
+                        <option value="PENDING">PENDING</option>
                         <option value="CANCEL">CANCEL</option>
                         <option value="DONE">DONE</option>
                     </select>
@@ -85,9 +85,9 @@
             echo '<div class="print-container">';
 
             if($_GET['start'] == $last_1century){
-                echo '<p>Terdapat <span class="label label-default">'. $data_count .' data</span></p>';
+                echo '<p>There are <span class="label label-default">'. $data_count .' tickets</span></p>';
             } else {
-                echo '<p>Berikut ini adalah daftar laporan tiket periode <b>'. $re_start .'</b> sampai <b>'. $re_end .'</b> terdapat <span class="label label-default">'. $data_count .' data</span></p>';
+                echo '<p>Here is a list of ticket reports for the period from <b>'. $re_start .'</b> to <b>'. $re_end .'</b>. There are <span class="label label-default">'. $data_count .' tickets</span></p>';
             }
 
             echo '
@@ -128,7 +128,7 @@
             echo '</table>';
             echo '</div>';
             echo '<button onclick="window.print()" class="btn btn-primary print-hide">Print Now</button> ';
-            echo '<a href="'. site_url() .'/laporan.php" class="btn btn-default print-hide">Clear Filter</a> ';
+            echo '<a href="'. site_url() .'/reports.php" class="btn btn-default print-hide">Clear Filter</a> ';
         }
     ?>
 </div>

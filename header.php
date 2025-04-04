@@ -73,7 +73,7 @@
                         </li>
                         <li><a href="<?=site_url();?>/ticket-list.php">List Ticket</a></li>
                         <li><a href="<?=site_url();?>/open-ticket.php">Open Ticket</a></li>
-                        <li><a href="<?=site_url();?>/laporan.php">Report</a></li>
+                        <li><a href="<?=site_url();?>/reports.php">Reports</a></li>
                     <?php } ?>
                 </ul>
                 
