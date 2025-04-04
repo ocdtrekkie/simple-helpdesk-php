@@ -53,7 +53,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="<?=site_url();?>">HELPDESK</a>
+                <a class="navbar-brand" href="<?=site_url();?>">Help Desk</a>
             </div>
 
             <!-- Collect the nav links, forms, and other content for toggling -->

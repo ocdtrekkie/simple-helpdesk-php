@@ -6,29 +6,25 @@
         
         <?php if(session_me()){ ?>
             <h2>Hello <?=ucfirst(strtolower($_SESSION['datauser']['tu_full_name']));?></h2>
-            <p>Below is a summary of the total data contained in this application.</p>
+            <p>Ticket status summary:</p>
 
             <br>
             <div class="row">
                 <div class="col-md-2">
-                    <label>DEPARTMENT</label><br>
-                    <label><?=Q_count("SELECT * FROM tbl_department");?> data</label>
+                    <label>OPEN</label><br>
+                    <label><?=Q_count("SELECT * FROM tbl_ticket WHERE tt_status = 'NEW'");?> tickets</label>
                 </div>
                 <div class="col-md-2">
-                    <label>PRIORITY</label><br>
-                    <label><?=Q_count("SELECT * FROM tbl_priority");?> data</label>
+                    <label>PENDING</label><br>
+                    <label><?=Q_count("SELECT * FROM tbl_ticket WHERE tt_status = 'PENDING'");?> tickets</label>
                 </div>
                 <div class="col-md-2">
-                    <label>SERVICE</label><br>
-                    <label><?=Q_count("SELECT * FROM tbl_service");?> data</label>
+                    <label>TOTAL</label><br>
+                    <label><?=Q_count("SELECT * FROM tbl_ticket");?> tickets</label>
                 </div>
                 <div class="col-md-2">
                     <label>USER</label><br>
-                    <label><?=Q_count("SELECT * FROM tbl_user WHERE tu_role!='admin'");?> data</label>
-                </div>
-                <div class="col-md-2">
-                    <label>TICKET</label><br>
-                    <label><?=Q_count("SELECT * FROM tbl_ticket");?> data</label>
+                    <label><?=Q_count("SELECT * FROM tbl_user");?> users</label>
                 </div>
             </div>
         <?php } else { ?>

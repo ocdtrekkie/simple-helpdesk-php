@@ -1,10 +1,8 @@
-# SIMPLE HELPDESK PHP
+# Simple Help Desk
 
-### Demo
-[Click Here To See Online Demo](https://demo.kang-cahya.web.id/?a=simple-helpdesk)
-> USERNAME : admin
+This is a Sandstorm package of a simple help desk application.
 
-> PASSWORD : 123
+The original work this is built upon is by [Kang Cahya](https://github.com/dyazincahya) and significantly modified.
 
 ### Module
 - Ticketing
@@ -16,13 +14,10 @@
 - Service
 - User
 
-### Requirement
-PHP 5.6 or Newer
-
-### Build With
-- PHP 5.6
-- Bootstrap 3.4
-- MYSQLDB
+### Demo
+[Click Here To See Online Demo](https://demo.kang-cahya.web.id/?a=simple-helpdesk)
+> USERNAME : admin
+> PASSWORD : 123
 
 ### Screenshot
 ![main](https://github.com/dyazincahya/simple-helpdesk-php/blob/master/screenshot/main.png)
