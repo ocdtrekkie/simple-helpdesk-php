@@ -95,7 +95,7 @@ CREATE TABLE `tbl_ticket` (
   `tt_service` int(11) NOT NULL,
   `tt_priority` int(11) NOT NULL,
   `tt_message` longtext,
-  `tt_status` enum('NEW','PROCCESS','PENDDING','CANCEL','DONE','DELETE') NOT NULL DEFAULT 'NEW',
+  `tt_status` enum('NEW','PROCESS','PENDING','CANCEL','DONE','DELETE') NOT NULL DEFAULT 'NEW',
   `tt_created` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -108,20 +108,12 @@ CREATE TABLE `tbl_ticket` (
 
 CREATE TABLE `tbl_user` (
   `tu_id` int(11) NOT NULL,
-  `tu_role` enum('admin','customer') NOT NULL,
-  `tu_user` varchar(100) NOT NULL,
+  `tu_role` enum('admin','tech','customer') NOT NULL,
+  `tu_user` varchar(100) NOT NULL UNIQUE,
   `tu_pass` varchar(100) NOT NULL DEFAULT '123',
   `tu_full_name` varchar(200) NOT NULL,
-  `tu_email` varchar(150) NOT NULL
+  `tu_email` varchar(150) NOT NULL DEFAULT ''
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `tbl_user`
---
-
-INSERT INTO `tbl_user` (`tu_id`, `tu_role`, `tu_user`, `tu_pass`, `tu_full_name`, `tu_email`) VALUES
-(1, 'admin', 'admin', '123', 'Kang cahya', 'cahya@yahoo.com');
--- (2, 'customer', 'customer', '123', 'Customer', 'customer@gmail.com');
 
 --
 -- Indexes for dumped tables

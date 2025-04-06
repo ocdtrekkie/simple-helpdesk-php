@@ -32,13 +32,25 @@
         if(your_position() !== site_url(true)){
             redirect_to(site_url(true));
         }
-        echo "
-            <script>
-                $(window).load(function(){        
-                    $('#myModal').modal('show');
-                }); 
-            </script>
-        ";
+        $userid = $_SERVER['HTTP_X_SANDSTORM_USER_ID'];
+        $displayname = urldecode($_SERVER['HTTP_X_SANDSTORM_USERNAME']);
+        if (strpos($_SERVER['HTTP_X_SANDSTORM_PERMISSIONS'], "admin") !== false) { $rolelevel = "admin"; }
+        elseif (strpos($_SERVER['HTTP_X_SANDSTORM_PERMISSIONS'], "tech") !== false) { $rolelevel = "tech"; }
+        elseif (strpos($_SERVER['HTTP_X_SANDSTORM_PERMISSIONS'], "customer") !== false) { $rolelevel = "customer"; }
+		
+        if ($displayname != "Anonymous User")
+        {
+            $sql = "INSERT IGNORE INTO tbl_user (tu_role, tu_user, tu_full_name) VALUES ('$rolelevel', '$userid', '$displayname')";
+            Q_execute($sql);
+            $sql2 = "UPDATE tbl_user SET tu_role = '$rolelevel' WHERE tu_user='$userid'";
+            Q_execute($sql2);
+			
+            $result = Q_array("SELECT * FROM tbl_user WHERE tu_user='$userid'");
+            if(count($result) > 0){
+                $_SESSION['login'] = true;
+                $_SESSION['datauser'] = $result[0];
+            }
+        }
     }
 ?>
 

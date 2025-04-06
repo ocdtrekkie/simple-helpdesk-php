@@ -41,16 +41,18 @@
                 <tr style="font-weight:bold;">
                     <td>NO</td>
                     <td>FULL NAME</td>
+                    <td>ROLE</td>
                     <td>EMAIL</td>
                     <td>ACTION</td>
                 </tr>
                 <?php 
-                    $data = Q_array("SELECT * FROM tbl_user WHERE tu_role='customer' ORDER BY tu_id DESC");
+                    $data = Q_array("SELECT * FROM tbl_user ORDER BY tu_id DESC");
                     foreach ($data as $key => $val) {
                         echo "
                             <tr>
                                 <td>".($key+1)."</td>
                                 <td>".$val['tu_full_name']."</td>
+                                <td>".$val['tu_role']."</td>
                                 <td>".$val['tu_email']."</td>
                                 <td>
                                     <a class='btn btn-default' data-toggle='modal' data-target='#ed-".$key."'>Edit/Delete</a>
@@ -107,12 +109,11 @@
 
     if(isset($_POST['update']))
     {
-        $a = Q_mres('customer');
         $d = Q_mres($_POST['fullname']);
         $e = Q_mres($_POST['email']);
         $f = Q_mres($_POST['id']);
 
-        $sql = "UPDATE tbl_user SET tu_role='$a', tu_full_name='$d', tu_email='$e' WHERE tu_id='$f'";
+        $sql = "UPDATE tbl_user SET tu_full_name='$d', tu_email='$e' WHERE tu_id='$f'";
         if(Q_execute($sql)){
             redirect_to("users.php");
         }
