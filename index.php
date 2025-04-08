@@ -5,7 +5,7 @@
         <img src="images/logo.png" height="100">
         
         <?php if(session_me()){ ?>
-            <h2>Hello <?=ucfirst(strtolower($_SESSION['datauser']['tu_full_name']));?></h2>
+            <h2>Hello <?=$_SESSION['datauser']['tu_full_name'];?></h2>
             <p>Ticket status summary:</p>
 
             <br>

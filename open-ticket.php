@@ -1,7 +1,7 @@
 <?php include('header.php');?>
 
 <?php
-    $user = Q_array("SELECT * FROM tbl_user WHERE tu_role='customer' ORDER BY tu_id DESC");
+    $user = Q_array("SELECT * FROM tbl_user ORDER BY tu_id DESC");
     $department = Q_array("SELECT * FROM tbl_department ORDER BY td_id DESC");
     $service = Q_array("SELECT * FROM tbl_service ORDER BY ts_id DESC");
     $priority = Q_array("SELECT * FROM tbl_priority ORDER BY tp_id DESC");
@@ -14,12 +14,16 @@
         <div class="row">
             <div class="col-md-4 form-group">
                 <label for="">User:</label>
-                <select name="user" class="form-control">
-                    <option value="">~ select user ~</option>
-                    <?php foreach ($user as $key => $u) {
-                        echo '<option value="'.$u['tu_id'].'">'.$u['tu_full_name'].' - '.$u['tu_email'].'</option>';
-                    } ?>
-                </select>
+                <?php if ($_SESSION['datauser']['tu_role'] == 'tech' || $_SESSION['datauser']['tu_role'] == 'admin') { ?>
+                    <select name="user" class="form-control">
+                        <option value="">~ select user ~</option>
+                        <?php foreach ($user as $key => $u) {
+                            echo '<option value="'.$u['tu_id'].'">'.$u['tu_full_name'].' - '.$u['tu_email'].'</option>';
+                        } ?>
+                    </select>
+                <?php } else { ?><br /><?=$_SESSION['datauser']['tu_full_name'];?>
+                    <input type="hidden" name="user" value="<?=$_SESSION['datauser']['tu_id'];?>">
+                <?php } ?>
             </div>
             <div class="col-md-8 form-group">
                 <label for="">Subject:</label>
@@ -64,7 +68,12 @@
 <?php
     if(isset($_POST['save']))
     {
-        $a = Q_mres($_POST['user']);
+        if ($_SESSION['datauser']['tu_role'] == 'tech' || $_SESSION['datauser']['tu_role'] == 'admin') {
+            $a = Q_mres($_POST['user']);
+        } else {
+            $a = $_SESSION['datauser']['tu_id'];
+        }
+        
         $b = Q_mres($_POST['subject']);
         $c = Q_mres($_POST['department']);
         $d = Q_mres($_POST['service']);

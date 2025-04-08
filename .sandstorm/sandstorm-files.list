@@ -87,11 +87,13 @@ opt/app/.sandstorm/service-config/mime.types
 opt/app/.sandstorm/service-config/nginx.conf
 opt/app/config.php
 opt/app/css/bootstrap.min.css
+opt/app/css/bootstrap.min.css.map
 opt/app/db_helpdesk_web.sql
 opt/app/department.php
 opt/app/footer.php
 opt/app/func.php
 opt/app/header.php
+opt/app/images/icon.png
 opt/app/images/logo.png
 opt/app/index.php
 opt/app/js/bootstrap.min.js
