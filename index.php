@@ -28,8 +28,8 @@
                 </div>
             </div>
         <?php } else { ?>
-            <h2>Hello world!</h2>
-            <p>Welcome to my application, there are many features that have been provided that you can use to help your current needs. Good luck, thank you.</p>
+            <h2>Welcome to the Help Desk</h2>
+            <p>Please sign in to create a help desk ticket.</p>
         <?php } ?>
     </div>
 </div>

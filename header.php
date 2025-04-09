@@ -95,14 +95,6 @@
                 <ul class="nav navbar-nav">
                     
                 </ul>
-
-                <?php 
-                    if(!session_me()){
-                        echo '<button type="button" class="btn btn-default navbar-btn navbar-right" data-toggle="modal" data-target="#myModal">Login</button>';
-                    } else {
-                        echo '<a href="'.site_url().'/logout.php" class="btn btn-default navbar-btn navbar-right">Logout</a>';
-                    }
-                ?>
             </div><!-- /.navbar-collapse -->
         </div><!-- /.container-fluid -->
     </nav>
