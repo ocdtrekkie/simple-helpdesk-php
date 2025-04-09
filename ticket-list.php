@@ -18,13 +18,17 @@
                     <td>ACTION</td>
                 </tr>
                 <?php 
+                    $limittoself = "";
+                    if($_SESSION['datauser']['tu_role'] != 'tech' && $_SESSION['datauser']['tu_role'] != 'admin') {
+                        $limittoself = "AND tt_user = " . $_SESSION['datauser']['tu_id'];
+                    }
                     $sql = "
                         SELECT * FROM tbl_ticket a 
                         LEFT JOIN tbl_user b ON b.tu_id=a.tt_user
                         LEFT JOIN tbl_department c ON c.td_id=a.tt_department
                         LEFT JOIN tbl_service d ON d.ts_id=a.tt_service
                         LEFT JOIN tbl_priority e ON e.tp_id=a.tt_priority
-                        WHERE tt_status!='DELETE'
+                        WHERE tt_status!='DELETE' $limittoself
                         ORDER BY tt_id DESC
                     ";
                     $data = Q_array($sql);
