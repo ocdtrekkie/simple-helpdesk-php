@@ -32,7 +32,7 @@
         if(your_position() !== site_url(true)){
             redirect_to(site_url(true));
         }
-        $userid = $_SERVER['HTTP_X_SANDSTORM_USER_ID'];
+        $userid = $_SERVER['HTTP_X_SANDSTORM_USER_ID'] ?? '';
         $displayname = urldecode($_SERVER['HTTP_X_SANDSTORM_USERNAME']);
         if (strpos($_SERVER['HTTP_X_SANDSTORM_PERMISSIONS'], "admin") !== false) { $rolelevel = "admin"; }
         elseif (strpos($_SERVER['HTTP_X_SANDSTORM_PERMISSIONS'], "tech") !== false) { $rolelevel = "tech"; }
