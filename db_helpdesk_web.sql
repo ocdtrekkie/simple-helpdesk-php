@@ -95,7 +95,7 @@ CREATE TABLE `tbl_ticket` (
   `tt_service` int(11) NOT NULL,
   `tt_priority` int(11) NOT NULL,
   `tt_message` longtext,
-  `tt_status` enum('NEW','PROCESS','PENDING','CANCEL','DONE','DELETE') NOT NULL DEFAULT 'NEW',
+  `tt_status` varchar(7) NOT NULL DEFAULT 'NEW',
   `tt_created` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -108,7 +108,7 @@ CREATE TABLE `tbl_ticket` (
 
 CREATE TABLE `tbl_user` (
   `tu_id` int(11) NOT NULL,
-  `tu_role` enum('admin','tech','customer') NOT NULL,
+  `tu_role` varchar(8) NOT NULL,
   `tu_user` varchar(100) NOT NULL UNIQUE,
   `tu_pass` varchar(100) NOT NULL DEFAULT '123',
   `tu_full_name` varchar(200) NOT NULL,
