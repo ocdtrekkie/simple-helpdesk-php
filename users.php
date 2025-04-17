@@ -39,7 +39,7 @@
         <div class="col-md-12">
             <table class="table table-bordered">
                 <tr style="font-weight:bold;">
-                    <td>NO</td>
+                    <td>ID</td>
                     <td>FULL NAME</td>
                     <td>ROLE</td>
                     <td>EMAIL</td>
@@ -50,7 +50,7 @@
                     foreach ($data as $key => $val) {
                         echo "
                             <tr>
-                                <td>".($key+1)."</td>
+                                <td>".$val['tu_id']."</td>
                                 <td>".$val['tu_full_name']."</td>
                                 <td>".$val['tu_role']."</td>
                                 <td>".$val['tu_email']."</td>

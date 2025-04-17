@@ -35,7 +35,7 @@
         <div class="col-md-12">
             <table class="table table-bordered">
                 <tr style="font-weight:bold;">
-                    <td>NO</td>
+                    <td>ID</td>
                     <td>NAME</td>
                     <td>DESCRIPTION</td>
                     <td>ACTION</td>
@@ -45,7 +45,7 @@
                     foreach ($data as $key => $val) {
                         echo "
                             <tr>
-                                <td>".($key+1)."</td>
+                                <td>".$val['ts_id']."</td>
                                 <td>".$val['ts_name']."</td>
                                 <td>".$val['ts_description']."</td>
                                 <td>

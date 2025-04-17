@@ -107,7 +107,7 @@
                 foreach ($data as $key => $val) {
                     echo "
                         <tr>
-                            <td>".($key+1)."</td>
+                            <td>".$val['tt_id']."</td>
                             <td>".$val['tu_full_name']." <br> ".$val['tu_email']."</td>
                             <td>".$val['tt_subject']."</td>
                             <td>".$val['ts_name']."</td>

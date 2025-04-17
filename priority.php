@@ -31,7 +31,7 @@
         <div class="col-md-12">
             <table class="table table-bordered">
                 <tr style="font-weight:bold;">
-                    <td>NO</td>
+                    <td>ID</td>
                     <td>NAME</td>
                     <td>ACTION</td>
                 </tr>
@@ -40,7 +40,7 @@
                     foreach ($data as $key => $val) {
                         echo "
                             <tr>
-                                <td>".($key+1)."</td>
+                                <td>".$val['tp_id']."</td>
                                 <td>".$val['tp_name']."</td>
                                 <td>
                                     <a class='btn btn-default' data-toggle='modal' data-target='#ed-".$key."'>Edit/Delete</a>
