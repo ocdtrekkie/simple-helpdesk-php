@@ -1,8 +1,4 @@
 <?php
-	define("CONF_HOSTNAME", 		"localhost");
-	define("CONF_USERNAME", 		"root");
-	define("CONF_PASSWORD", 		"");
-	define("CONF_DATABASE", 		"db_helpdesk_web");
 	define("CONF_DIR_PROJECT", 		"simple-helpdesk-php");
 	define("CONF_AUTHOR", 			"Kang Cahya");
 	define("CONF_AUTHOR_URL", 		"https://www.kang-cahya.com/");

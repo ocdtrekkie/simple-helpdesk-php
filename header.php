@@ -40,7 +40,7 @@
 		
         if ($displayname != "Anonymous User")
         {
-            $sql = "INSERT IGNORE INTO tbl_user (tu_role, tu_user, tu_full_name) VALUES ('$rolelevel', '$userid', '$displayname')";
+            $sql = "INSERT OR IGNORE INTO tbl_user (tu_role, tu_user, tu_full_name) VALUES ('$rolelevel', '$userid', '$displayname')";
             Q_execute($sql);
             $sql2 = "UPDATE tbl_user SET tu_role = '$rolelevel' WHERE tu_user='$userid'";
             Q_execute($sql2);

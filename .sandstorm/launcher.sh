@@ -11,22 +11,15 @@ wait_for() {
     done
 }
 
-# Create a bunch of folders under the clean /var that php, nginx, and mysql expect to exist
-mkdir -p /var/lib/mysql
-mkdir -p /var/lib/mysql-files
+# Create a bunch of folders under the clean /var that php and nginx expect to exist
 mkdir -p /var/lib/nginx
+mkdir -p /var/lib/php/sessions
 mkdir -p /var/log
-mkdir -p /var/log/mysql
 mkdir -p /var/log/nginx
 # Wipe /var/run, since pidfiles and socket files from previous launches should go away
 # TODO someday: I'd prefer a tmpfs for these.
 rm -rf /var/run
 mkdir -p /var/run/php
-rm -rf /var/tmp
-mkdir -p /var/tmp
-mkdir -p /var/run/mysqld
-rm -rf /var/lib/php/sessions
-mkdir -p /var/lib/php/sessions
 
 # Rotate log files larger than 512K
 log_files="$(find /var/log -type f -name '*.log')"
@@ -36,23 +29,9 @@ for f in $log_files; do
     fi
 done
 
-if [ ! -d /var/lib/mysql/mysql ]; then
-    # Ensure mysql tables created
-    HOME=/etc/mysql /usr/sbin/mysqld --initialize
-fi
-
-# Spawn mysqld, php
-HOME=/etc/mysql /usr/sbin/mysqld --skip-grant-tables &
+# Spawn php
 /usr/sbin/php-fpm8.2 --nodaemonize --fpm-config /etc/php/8.2/fpm/php-fpm.conf &
-# Wait until mysql and php have bound their sockets, indicating readiness
-wait_for mysql /var/run/mysqld/mysqld.sock
-
-if [ ! -e /var/.db-created ]; then
-    mysql --user root -e 'CREATE DATABASE db_helpdesk_web'
-    mysql --user root --database db_helpdesk_web < /opt/app/db_helpdesk_web.sql
-    touch /var/.db-created
-fi
-
+# Wait until php has bound its socket, indicating readiness
 wait_for php-fpm8.2 /var/run/php/php8.2-fpm.sock
 
 # Start nginx.

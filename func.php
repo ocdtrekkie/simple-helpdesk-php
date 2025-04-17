@@ -2,37 +2,30 @@
     
     function db($params = array())
     {
-        if (isset($params['hostname'])) {
-            $hostname = $params['hostname'];
-        } else {
-            $hostname = CONF_HOSTNAME;
+        $conn = new SQLite3('/var/data.sqlite');
+
+        if (!$conn) {
+            die("Connection failed: " . $conn->lastErrorMsg());
         }
-
-        if (isset($params['username'])) {
-            $username = $params['username'];
-        } else {
-            $username = CONF_USERNAME;
-        }
-
-        if (isset($params['password'])) {
-            $password = $params['password'];
-        } else {
-            $password = CONF_PASSWORD;
-        }
-
-        if (isset($params['database'])) {
-            $database = $params['database'];
-        } else {
-            $database = CONF_DATABASE;
-        }
-
-        $conn = new mysqli($hostname, $username, $password, $database);
-
-        if ($conn->connect_error) {
-            die("Connection failed: " . $conn->connect_error);
+		
+        $cnt = $conn->querySingle("SELECT count(*) FROM sqlite_master WHERE type='table' AND name='tbl_user';");
+        if ($cnt === 0) {
+            $sql = file_get_contents('/opt/app/db_shd_sqlite.sql');
+            $conn->exec($sql);
+            $conn->exec('PRAGMA journal_mode = wal;');
         }
 
         return $conn;
+    }
+	
+    // Thanks https://stackoverflow.com/a/77786660
+    function sqliteFetchAll(\SQLite3Result $results, $mode = SQLITE3_ASSOC): array
+    {
+        $multiArray = [];
+        while($result = $results->fetchArray($mode)) {
+            $multiArray[] = $result;
+        }
+        return $multiArray;
     }
 
     function Q_array($sql = null)
@@ -44,7 +37,7 @@
         } else {
             if ($result = $db->query($sql)) 
             {
-                return $result->fetch_all(MYSQLI_ASSOC);
+                return sqliteFetchAll($result, SQLITE3_ASSOC);
 
                 $result->free();
             }
@@ -61,7 +54,7 @@
         if ($sql === null) {
             return null;
         } else {
-            if ($result = $db->query($sql)) 
+            if ($result = $db->exec($sql)) 
             {
                 return $result;
 
@@ -82,7 +75,7 @@
         } else {
             if ($result = $db->query($sql)) 
             {
-                return $result->num_rows;
+                return count(sqliteFetchAll($result, SQLITE3_ASSOC));
 
                 $result->free();
             }
@@ -98,7 +91,7 @@
         if ($param === null) {
             return null;
         } else {
-            return mysqli_real_escape_string($db, $param); 
+            return $db->escapeString($param); 
         }
     }
 
