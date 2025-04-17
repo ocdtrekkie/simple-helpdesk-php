@@ -73,7 +73,7 @@
                 LEFT JOIN tbl_department c ON c.td_id=a.tt_department
                 LEFT JOIN tbl_service d ON d.ts_id=a.tt_service
                 LEFT JOIN tbl_priority e ON e.tp_id=a.tt_priority
-                WHERE (DATE_FORMAT(tt_created, '%Y-%m-%d') BETWEEN '$k_start' AND '$k_end') ". $q_status ." 
+                WHERE (DATE(tt_created) BETWEEN '$k_start' AND '$k_end') ". $q_status ." 
                 ORDER BY tt_id DESC
             ";
             $data = Q_array($sql);
