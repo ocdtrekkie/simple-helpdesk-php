@@ -88,36 +88,39 @@
 </div>
 
 <?php
-    if(isset($_POST['save']))
+    if($_SESSION['datauser']['tu_role'] == 'admin')
     {
-        $a = Q_mres($_POST['name']);
-        $b = Q_mres($_POST['description']);
+        if(isset($_POST['save']))
+        {
+            $a = Q_mres($_POST['name']);
+            $b = Q_mres($_POST['description']);
 
-        $sql = "INSERT INTO tbl_service (ts_name, ts_description) VALUES ('$a', '$b')";
-        if(Q_execute($sql)){
-            redirect_to("service.php");
+            $sql = "INSERT INTO tbl_service (ts_name, ts_description) VALUES ('$a', '$b')";
+            if(Q_execute($sql)){
+                redirect_to("service.php");
+            }
         }
-    }
 
-    if(isset($_POST['update']))
-    {
-        $a = Q_mres($_POST['name']);
-        $b = Q_mres($_POST['description']);
-        $c = Q_mres($_POST['id']);
+        if(isset($_POST['update']))
+        {
+            $a = Q_mres($_POST['name']);
+            $b = Q_mres($_POST['description']);
+            $c = Q_mres($_POST['id']);
 
-        $sql = "UPDATE tbl_service SET ts_name='$a', ts_description='$b' WHERE ts_id='$c'";
-        if(Q_execute($sql)){
-            redirect_to("service.php");
+            $sql = "UPDATE tbl_service SET ts_name='$a', ts_description='$b' WHERE ts_id='$c'";
+            if(Q_execute($sql)){
+                redirect_to("service.php");
+            }
         }
-    }
 
-    if(isset($_POST['delete']))
-    {
-        $a = Q_mres($_POST['id']);
+        if(isset($_POST['delete']))
+        {
+            $a = Q_mres($_POST['id']);
 
-        $sql = "DELETE FROM tbl_service WHERE ts_id='$a'";
-        if(Q_execute($sql)){
-            redirect_to("service.php");
+            $sql = "DELETE FROM tbl_service WHERE ts_id='$a'";
+            if(Q_execute($sql)){
+                redirect_to("service.php");
+            }
         }
     }
 ?>

@@ -46,19 +46,21 @@
                     <td>ACTION</td>
                 </tr>
                 <?php 
-                    $data = Q_array("SELECT * FROM tbl_user ORDER BY tu_id DESC");
-                    foreach ($data as $key => $val) {
-                        echo "
-                            <tr>
-                                <td>".$val['tu_id']."</td>
-                                <td>".$val['tu_full_name']."</td>
-                                <td>".$val['tu_role']."</td>
-                                <td>".$val['tu_email']."</td>
-                                <td>
-                                    <a class='btn btn-default' data-toggle='modal' data-target='#ed-".$key."'>Edit/Delete</a>
-                                </td>
-                            </tr>
-                        ";
+                    if($_SESSION['datauser']['tu_role'] == 'tech' || $_SESSION['datauser']['tu_role'] == 'admin')
+                    {
+                        $data = Q_array("SELECT * FROM tbl_user ORDER BY tu_id DESC");
+                        foreach ($data as $key => $val) {
+                            echo "
+                                <tr>
+                                    <td>".$val['tu_id']."</td>
+                                    <td>".$val['tu_full_name']."</td>
+                                    <td>".$val['tu_role']."</td>
+                                    <td>".$val['tu_email']."</td>
+                                    <td>
+                                        <a class='btn btn-default' data-toggle='modal' data-target='#ed-".$key."'>Edit/Delete</a>
+                                    </td>
+                                </tr>
+                            ";
                 ?>
                     <div id="ed-<?=$key;?>" class="modal fade" role="dialog">
                         <div class="modal-dialog" style="background-color:#FFFFFF;">
@@ -87,45 +89,48 @@
                             </form>
                         </div>
                     </div>
-                <?php } ?>
+                <?php } } ?>
             </table>
         </div>
     </div>
 </div>
 
 <?php
-    if(isset($_POST['save']))
+    if($_SESSION['datauser']['tu_role'] == 'admin')
     {
-        $a = Q_mres('customer');
-        $b = Q_mres($_POST['username']);
-        $d = Q_mres($_POST['fullname']);
-        $e = Q_mres($_POST['email']);
+        if(isset($_POST['save']))
+        {
+            $a = Q_mres('customer');
+            $b = Q_mres($_POST['username']);
+            $d = Q_mres($_POST['fullname']);
+            $e = Q_mres($_POST['email']);
 
-        $sql = "INSERT INTO tbl_user (tu_role, tu_user, tu_full_name, tu_email) VALUES ('$a', '$b', '$d', '$e')";
-        if(Q_execute($sql)){
-            redirect_to("users.php");
+            $sql = "INSERT INTO tbl_user (tu_role, tu_user, tu_full_name, tu_email) VALUES ('$a', '$b', '$d', '$e')";
+            if(Q_execute($sql)){
+                redirect_to("users.php");
+            }
         }
-    }
 
-    if(isset($_POST['update']))
-    {
-        $d = Q_mres($_POST['fullname']);
-        $e = Q_mres($_POST['email']);
-        $f = Q_mres($_POST['id']);
+        if(isset($_POST['update']))
+        {
+            $d = Q_mres($_POST['fullname']);
+            $e = Q_mres($_POST['email']);
+            $f = Q_mres($_POST['id']);
 
-        $sql = "UPDATE tbl_user SET tu_full_name='$d', tu_email='$e' WHERE tu_id='$f'";
-        if(Q_execute($sql)){
-            redirect_to("users.php");
+            $sql = "UPDATE tbl_user SET tu_full_name='$d', tu_email='$e' WHERE tu_id='$f'";
+            if(Q_execute($sql)){
+                redirect_to("users.php");
+            }
         }
-    }
 
-    if(isset($_POST['delete']))
-    {
-        $a = Q_mres($_POST['id']);
+        if(isset($_POST['delete']))
+        {
+            $a = Q_mres($_POST['id']);
 
-        $sql = "DELETE FROM tbl_user WHERE tu_id='$a'";
-        if(Q_execute($sql)){
-            redirect_to("users.php");
+            $sql = "DELETE FROM tbl_user WHERE tu_id='$a'";
+            if(Q_execute($sql)){
+                redirect_to("users.php");
+            }
         }
     }
 ?>

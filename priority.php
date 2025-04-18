@@ -78,34 +78,37 @@
 </div>
 
 <?php
-    if(isset($_POST['save']))
+    if($_SESSION['datauser']['tu_role'] == 'admin')
     {
-        $a = Q_mres($_POST['name']);
+        if(isset($_POST['save']))
+        {
+            $a = Q_mres($_POST['name']);
 
-        $sql = "INSERT INTO tbl_priority (tp_name) VALUES ('$a')";
-        if(Q_execute($sql)){
-            redirect_to("priority.php");
+            $sql = "INSERT INTO tbl_priority (tp_name) VALUES ('$a')";
+            if(Q_execute($sql)){
+                redirect_to("priority.php");
+            }
         }
-    }
 
-    if(isset($_POST['update']))
-    {
-        $a = Q_mres($_POST['name']);
-        $c = Q_mres($_POST['id']);
+        if(isset($_POST['update']))
+        {
+            $a = Q_mres($_POST['name']);
+            $c = Q_mres($_POST['id']);
 
-        $sql = "UPDATE tbl_priority SET tp_name='$a' WHERE tp_id='$c'";
-        if(Q_execute($sql)){
-            redirect_to("priority.php");
+            $sql = "UPDATE tbl_priority SET tp_name='$a' WHERE tp_id='$c'";
+            if(Q_execute($sql)){
+                redirect_to("priority.php");
+            }
         }
-    }
 
-    if(isset($_POST['delete']))
-    {
-        $a = Q_mres($_POST['id']);
+        if(isset($_POST['delete']))
+        {
+            $a = Q_mres($_POST['id']);
 
-        $sql = "DELETE FROM tbl_priority WHERE tp_id='$a'";
-        if(Q_execute($sql)){
-            redirect_to("priority.php");
+            $sql = "DELETE FROM tbl_priority WHERE tp_id='$a'";
+            if(Q_execute($sql)){
+                redirect_to("priority.php");
+            }
         }
     }
 ?>

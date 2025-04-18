@@ -88,36 +88,39 @@
 </div>
 
 <?php
-    if(isset($_POST['save']))
+    if($_SESSION['datauser']['tu_role'] == 'admin')
     {
-        $a = Q_mres($_POST['name']);
-        $b = Q_mres($_POST['description']);
+        if(isset($_POST['save']))
+        {
+            $a = Q_mres($_POST['name']);
+            $b = Q_mres($_POST['description']);
 
-        $sql = "INSERT INTO tbl_department (td_name, td_description) VALUES ('$a', '$b')";
-        if(Q_execute($sql)){
-            redirect_to("department.php");
+            $sql = "INSERT INTO tbl_department (td_name, td_description) VALUES ('$a', '$b')";
+            if(Q_execute($sql)){
+                redirect_to("department.php");
+            }
         }
-    }
 
-    if(isset($_POST['update']))
-    {
-        $a = Q_mres($_POST['name']);
-        $b = Q_mres($_POST['description']);
-        $c = Q_mres($_POST['id']);
+        if(isset($_POST['update']))
+        {
+            $a = Q_mres($_POST['name']);
+            $b = Q_mres($_POST['description']);
+            $c = Q_mres($_POST['id']);
 
-        $sql = "UPDATE tbl_department SET td_name='$a', td_description='$b' WHERE td_id='$c'";
-        if(Q_execute($sql)){
-            redirect_to("department.php");
+            $sql = "UPDATE tbl_department SET td_name='$a', td_description='$b' WHERE td_id='$c'";
+            if(Q_execute($sql)){
+                redirect_to("department.php");
+            }
         }
-    }
 
-    if(isset($_POST['delete']))
-    {
-        $a = Q_mres($_POST['id']);
+        if(isset($_POST['delete']))
+        {
+            $a = Q_mres($_POST['id']);
 
-        $sql = "DELETE FROM tbl_department WHERE td_id='$a'";
-        if(Q_execute($sql)){
-            redirect_to("department.php");
+            $sql = "DELETE FROM tbl_department WHERE td_id='$a'";
+            if(Q_execute($sql)){
+                redirect_to("department.php");
+            }
         }
     }
 ?>
