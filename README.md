@@ -4,6 +4,8 @@ This is a Sandstorm package of a simple help desk application.
 
 The original work this is built upon is by [Kang Cahya](https://github.com/dyazincahya) and significantly modified.
 
+Current logo is by Freepik on Flaticon.
+
 ### Module
 - Ticketing
 - Report
@@ -20,4 +22,4 @@ The original work this is built upon is by [Kang Cahya](https://github.com/dyazi
 > PASSWORD : 123
 
 ### Screenshot
-![main](https://github.com/dyazincahya/simple-helpdesk-php/blob/master/screenshot/main.png)
+![main](https://github.com/ocdtrekkie/simple-helpdesk-php/blob/master/screenshot/main.png)
