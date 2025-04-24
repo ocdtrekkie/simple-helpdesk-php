@@ -15,8 +15,8 @@
             <div class="col-md-4 form-group">
                 <label for="">User:</label>
                 <?php if ($_SESSION['datauser']['tu_role'] == 'tech' || $_SESSION['datauser']['tu_role'] == 'admin') { ?>
-                    <select name="user" class="form-control">
-                        <option value="">~ select user ~</option>
+                    <select name="user" class="form-control" required="true">
+                        <option value="">[ select user ]</option>
                         <?php foreach ($user as $key => $u) {
                             echo '<option value="'.$u['tu_id'].'">'.$u['tu_full_name'].' - '.$u['tu_email'].'</option>';
                         } ?>
@@ -32,7 +32,7 @@
             <div class="col-md-4 form-group">
                 <label for="">Department:</label>
                 <select name="department" class="form-control" required="true">
-                    <option value="">~ select department ~</option>
+                    <option value="">[ select department ]</option>
                     <?php foreach ($department as $key => $u) {
                         echo '<option value="'.$u['td_id'].'">'.$u['td_name'].'</option>';
                     } ?>
@@ -41,7 +41,7 @@
             <div class="col-md-4 form-group">
                 <label for="">Service:</label>
                 <select name="service" class="form-control" required="true">
-                    <option value="">~ select service ~</option>
+                    <option value="">[ select service ]</option>
                     <?php foreach ($service as $key => $u) {
                         echo '<option value="'.$u['ts_id'].'">'.$u['ts_name'].'</option>';
                     } ?>
@@ -50,7 +50,7 @@
             <div class="col-md-4 form-group">
                 <label for="">Priority:</label>
                 <select name="priority" class="form-control" required="true">
-                    <option value="">~ select priority ~</option>
+                    <option value="">[ select priority ]</option>
                     <?php foreach ($priority as $key => $u) {
                         echo '<option value="'.$u['tp_id'].'">'.$u['tp_name'].'</option>';
                     } ?>
