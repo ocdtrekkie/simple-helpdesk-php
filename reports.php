@@ -1,5 +1,5 @@
 <?php 
-    include('header.php');
+    $page="repo"; include('header.php');
 
     //date collections
     $today = date('Y-m-d');

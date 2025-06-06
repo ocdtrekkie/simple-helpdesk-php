@@ -1,4 +1,4 @@
-<?php include('header.php');?>
+<?php $page="data"; include('header.php');?>
 
 <div class="container">
     <div class="page-header"><h1>Data Users</h1></div>

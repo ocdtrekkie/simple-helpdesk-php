@@ -1,4 +1,4 @@
-<?php include('header.php');?>
+<?php $page="list"; include('header.php');?>
 
 <div class="container">
     <div class="page-header"><h1>Ticket List</h1></div>

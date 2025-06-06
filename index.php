@@ -1,4 +1,4 @@
-<?php include('header.php');?>
+<?php $page="home"; include('header.php');?>
 
 <div class="container">
     <div class="jumbotron">

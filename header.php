@@ -1,6 +1,17 @@
 <?php 
     session_start();
     require_once("func.php"); 
+	
+	$homeclass=""; $homesr="";
+	$listclass=""; $listsr="";
+	$openclass=""; $opensr="";
+	$repoclass=""; $reposr="";
+	$dataclass=""; $datasr="";
+	if($page=="home") { $homeclass=" class=\"active\""; $homesr=" <span class=\"sr-only\">(current)</span>"; }
+	elseif($page=="list") { $listclass=" class=\"active\""; $listsr=" <span class=\"sr-only\">(current)</span>"; }
+	elseif($page=="open") { $openclass=" class=\"active\""; $opensr=" <span class=\"sr-only\">(current)</span>"; }
+	elseif($page=="repo") { $repoclass=" class=\"active\""; $reposr=" <span class=\"sr-only\">(current)</span>"; }
+	elseif($page=="data") { $dataclass=" active"; $datasr=" <span class=\"sr-only\">(current)</span>"; }
 ?>
 <!doctype html>
 <html lang="en">
@@ -71,16 +82,16 @@
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav">
-                    <li class="active"><a href="<?=site_url();?>">Home <span class="sr-only">(current)</span></a></li>
+                    <li<?=$homeclass;?>><a href="/index.php">Home<?=$homesr;?></a></li>
 
                     <?php if(session_me()){ ?>
 
-                        <li><a href="<?=site_url();?>/ticket-list.php">List Ticket</a></li>
-                        <li><a href="<?=site_url();?>/open-ticket.php">Open Ticket</a></li>
+                        <li<?=$listclass;?>><a href="<?=site_url();?>/ticket-list.php">Ticket List<?=$listsr;?></a></li>
+                        <li<?=$openclass;?>><a href="<?=site_url();?>/open-ticket.php">Open Ticket<?=$opensr;?></a></li>
                         <?php if ($_SESSION['datauser']['tu_role'] == 'tech' || $_SESSION['datauser']['tu_role'] == 'admin') { ?>
-                            <li><a href="<?=site_url();?>/reports.php">Reports</a></li>
-                            <li class="dropdown">
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Data <span class="caret"></span></a>
+                            <li<?=$repoclass;?>><a href="<?=site_url();?>/reports.php">Reports<?=$reposr;?></a></li>
+                            <li class="dropdown<?=$dataclass;?>">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Data<?=$datasr;?> <span class="caret"></span></a>
                                 <ul class="dropdown-menu">
                                 <li><a href="<?=site_url();?>/department.php">Department</a></li>
                                 <li><a href="<?=site_url();?>/priority.php">Priority</a></li>

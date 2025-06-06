@@ -1,4 +1,4 @@
-<?php include('header.php');?>
+<?php $page="open"; include('header.php');?>
 
 <?php
     $user = Q_array("SELECT * FROM tbl_user ORDER BY tu_id DESC");
